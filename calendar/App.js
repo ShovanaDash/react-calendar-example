@@ -24,7 +24,7 @@ class App extends React.Component {
 
     return (
       <div className="app">
-        <h3 style={{textAlign: 'center', padding: 10}}>Sample event based calendar</h3>
+        <h3 style={{textAlign: 'center', padding: 10}}></h3>
         <div className="examples">
           <div className="example">
             <Current localizer={globalizeLocalizer} />

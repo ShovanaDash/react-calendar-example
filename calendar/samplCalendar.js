@@ -12,18 +12,46 @@ const ColoredDateCellWrapper = ({ children }) =>
     },
   })
 
+const eventDetails = (event) => {
+  //Call API here with all details of event
+  console.log(event)
+}
+
 let SamplCalendar = ({ localizer }) => (
   <Calendar
     events={events}
     views={allViews}
     step={60}
     showMultiDayTimes
-    max={dates.add(dates.endOf(new Date(2015, 17, 1), 'day'), -1, 'hours')}
-    defaultDate={new Date(2015, 3, 1)}
+    max={dates.add(dates.endOf(new Date(2022, 12, 15), 'day'), -1, 'hours')}
+    defaultDate={new Date()}
     components={{
       timeSlotWrapper: ColoredDateCellWrapper,
     }}
     localizer={localizer}
+    eventPropGetter={
+      (event, start, end, isSelected) => {
+        let newStyle = {
+          backgroundColor: "lightblue",
+          color: 'black',
+          borderRadius: "4px",
+          border: "none",
+          fontStyle: "normal"
+        };
+  
+        if (event.eventStyle && event.eventStyle.backgroundColor){
+          newStyle.backgroundColor = event.eventStyle.backgroundColor
+        }
+        if (event.eventStyle && event.eventStyle.fontStyle){
+          newStyle.fontStyle = event.eventStyle.fontStyle
+        }
+        return {
+          className: "",
+          style: newStyle
+        };
+      }
+    }
+    onSelectEvent={event => eventDetails(event)}
   />
 )
 
